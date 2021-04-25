@@ -20,6 +20,7 @@ namespace TextToHex
         private void button1_Click(object sender, EventArgs e)
         {
             textBox2.Text = toHex(textBox1.Text);
+            textBox3.Text = HexStringToString(textBox2.Text);
         }
 
         public string toHex(string inp)
@@ -32,6 +33,21 @@ namespace TextToHex
                 outp += string.Format("{0:x}", V);
             }
             return outp;
+        }
+
+        string HexStringToString(string hexString)
+        {
+            if (hexString == null || (hexString.Length & 1) == 1)
+            {
+                throw new ArgumentException();
+            }
+            var sb = new StringBuilder();
+            for (var i = 0; i < hexString.Length; i += 2)
+            {
+                var hexChar = hexString.Substring(i, 2);
+                sb.Append((char)Convert.ToByte(hexChar, 16));
+            }
+            return sb.ToString();
         }
     }
 }
