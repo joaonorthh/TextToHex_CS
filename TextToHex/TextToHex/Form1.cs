@@ -49,5 +49,11 @@ namespace TextToHex
             }
             return sb.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = HexStringToString(textBox1.Text); //toHex(textBox1.Text);
+            textBox3.Text = toHex(textBox2.Text);
+        }
     }
 }
